@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:inha_app/components/home/appbar_clients.dart';
 import 'package:inha_app/components/home/appbar_money.dart';
@@ -16,6 +17,8 @@ import 'package:inha_app/pages/drawerpages/order.dart';
 import 'package:inha_app/pages/drawerpages/settings.dart';
 import 'package:inha_app/pages/drawerpages/shipping.dart';
 import 'package:inha_app/pages/drawerpages/writingOff.dart';
+import 'package:inha_app/pages/line%20graph/individual_line.dart';
+import 'package:inha_app/pages/line%20graph/lineChart.dart';
 import 'package:inha_app/pages/login_page.dart';
 import 'package:inha_app/themes/theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -65,162 +68,264 @@ class _MainPageState extends State<MainPage> {
       body:
           // const App_bar(),
 
-          Column(
-        children: [
-          Container(
-            height: 80,
-            color: Theme.of(context).colorScheme.primary,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-              child: Column(
-                children: [
-                  Row(
+          SingleChildScrollView(
+            child: Column(
                     children: [
-                      Builder(builder: (context) {
-                        return InkWell(
-                          onTap: () {
-                            Scaffold.of(context).openDrawer();
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).colorScheme.secondary,
+            Container(
+              height: 80,
+              color: Theme.of(context).colorScheme.primary,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Builder(builder: (context) {
+                          return InkWell(
+                            onTap: () {
+                              Scaffold.of(context).openDrawer();
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Theme.of(context).colorScheme.secondary,
+                              ),
+                              padding: const EdgeInsets.all(5),
+                              child: const Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Home",
+                                    style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                ],
+                              ),
                             ),
-                            padding: const EdgeInsets.all(5),
-                            child: const Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Home",
-                                  style: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w700),
-                                ),
-                              ],
-                            ),
+                          );
+                        }),
+                        const SizedBox(width: 20),
+                        Container(
+                          width: 200,
+                          height: 40,
+                          child: const TextField(
+                            decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(),
+                                enabledBorder: OutlineInputBorder(),
+                                hintText: "Search",
+                                labelText: "Search"),
                           ),
-                        );
-                      }),
-                      const SizedBox(width: 20),
-                      Container(
-                        width: 200,
-                        height: 40,
-                        child: const TextField(
-                          decoration: InputDecoration(
-                              focusedBorder: OutlineInputBorder(),
-                              enabledBorder: OutlineInputBorder(),
-                              hintText: "Search",
-                              labelText: "Search"),
                         ),
-                      ),
-                      Container(
-                        // color: Colors.black,
-                        width: 60,
-                        height: 40,
-                        // color: Colors.red,
-                        child: const Row(
-                          children: [
-                            Icon(
-                              Icons.person,
-                              color: Colors.blueGrey,
-                            ),
-                            Text(
-                              "Test",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.blueGrey),
-                            ),
-                          ],
+                        Container(
+                          // color: Colors.black,
+                          width: 60,
+                          height: 40,
+                          // color: Colors.red,
+                          child: const Row(
+                            children: [
+                              Icon(
+                                Icons.person,
+                                color: Colors.blueGrey,
+                              ),
+                              Text(
+                                "Test",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.blueGrey),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 5),
+            
+            const SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  SizedBox(width: 10),
+                  AppBar_money(),
+                  SizedBox(width: 10),
+                  AppBar_Users(),
+                  SizedBox(width: 10),
+                  AppBar_clients(),
+                  SizedBox(width: 10),
+                  AppBar_Sales(),
                 ],
               ),
             ),
-          ),
-          const SizedBox(height: 5),
-
-          const SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                SizedBox(width: 10),
-                AppBar_money(),
-                SizedBox(width: 10),
-                AppBar_Users(),
-                SizedBox(width: 10),
-                AppBar_clients(),
-                SizedBox(width: 10),
-                AppBar_Sales(),
-              ],
-            ),
-          ),
-
-
-
-
-
-          Padding(
-            padding: const EdgeInsets.only(left: 20, top: 15),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(left: 10, top: 10, right: 10),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.background,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
+            
+            
+            
+            
+            
+            
+            
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+              
+              
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, top: 15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.only(left: 10, top: 30, right:20),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.background,
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                            ),
+                          ),
+                          height: 300,
+                          width: 350,
+                          child: MyBarGraph(weeklySummary: weeklySummary),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.background,
+                              borderRadius: const BorderRadius.only(
+                                  bottomRight: Radius.circular(20))),
+                          width: 350,
+                          child: const Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Website View",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 18,
+                                    color: Colors.black87),
+                              ),
+                              Text("Last Campaign Performance"),
+                              SizedBox(height: 8),
+                              Divider(
+                                color: Color.fromARGB(255, 195, 189, 189),
+                              ),
+                              SizedBox(height: 8),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.timer,
+                                    size: 15,
+                                    color: Colors.black45,
+                                  ),
+                                  SizedBox(width: 5),
+                                  Text("campaign sent 2 days ago"),
+              
+                                  
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  height: 350,
-                  width: 350,
-                  child: MyBarGraph(weeklySummary: weeklySummary),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.background,
-                      borderRadius: const BorderRadius.only(
-                          bottomRight: Radius.circular(20))),
-                  width: 350,
-                  child: const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Website View",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 18,
-                            color: Colors.black87),
-                      ),
-                      Text("Last Campaign Performance"),
-                      SizedBox(height: 8),
-                      Divider(
-                        color: Color.fromARGB(255, 195, 189, 189),
-                      ),
-                      SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.timer,
-                            size: 15,
-                            color: Colors.black45,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, top: 15,),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.only(left: 10, top: 30, right: 30,),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.background,
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                            ),
                           ),
-                          SizedBox(width: 5),
-                          Text("campaign sent 2 days ago")
-                        ],
-                      )
+                          height: 300,
+                          width: 400,
+                          child: LineChartWidgets(lines: individualLines,),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.background,
+                              borderRadius: const BorderRadius.only(
+                                  bottomRight: Radius.circular(20))),
+                          width: 400,
+                          child: const Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Daily Sales",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 18,
+                                    color: Colors.black87),
+                              ),
+                              Text("15% increase in today's sales"),
+                              SizedBox(height: 8),
+                              Divider(
+                                color: Color.fromARGB(255, 195, 189, 189),
+                              ),
+                              SizedBox(height: 8),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.timer,
+                                    size: 15,
+                                    color: Colors.black45,
+                                  ),
+                                  SizedBox(width: 5),
+                                  Text("updated 4 min ago"),
+              
+                                  
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+              
+              
+              
+              
+              
+              
+                ],
+              ),
+            ),
+
+
+           
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
                     ],
                   ),
-                ),
-              ],
-            ),
           ),
 
-        ],
-      ),
+
+
+
+
+
+
+
+
       drawer: Drawer(
         backgroundColor: Theme.of(context).colorScheme.secondary,
         child: ListView(
