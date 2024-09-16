@@ -1,8 +1,10 @@
-import 'package:fl_chart/fl_chart.dart';
+
+
+
+
 import 'package:flutter/material.dart';
-import 'package:inha_app/pages/bar%20graph/bar_data.dart';
 
-
+import '../../config/imports.dart';
 
 class MyBarGraph extends StatelessWidget {
   final List weeklySummary;

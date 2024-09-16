@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:inha_app/components/home/bell.dart';
 import 'package:inha_app/config/imports.dart';
-import 'package:inha_app/pages/HandBook/nomeclature.dart';
+import 'package:inha_app/pages/HandBook/create.dart';
 
-class DirectoryPage extends StatefulWidget {
-  const DirectoryPage({super.key});
+class NomenclaturePage extends StatefulWidget {
+  const NomenclaturePage({super.key});
 
   @override
-  State<DirectoryPage> createState() => _DirectoryPageState();
+  State<NomenclaturePage> createState() => _NomenclaturePageState();
 }
 
-class _DirectoryPageState extends State<DirectoryPage> {
+class _NomenclaturePageState extends State<NomenclaturePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,7 +79,7 @@ class _DirectoryPageState extends State<DirectoryPage> {
 
                         InkWell(
                           onTap: () {
-                            Get.to(()=> NomenclaturePage());
+                            Get.to(()=> CreateNomePage());
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(15),
@@ -94,9 +95,9 @@ class _DirectoryPageState extends State<DirectoryPage> {
                                   ),
                                 color:  Theme.of(context).colorScheme.tertiary
                               ),
-                              child: const Row(children: [Icon(Icons.list), 
+                              child: const Row(children: [Icon(Icons.draw), 
                               SizedBox(width: 10,),
-                            Text("Номенклатура",
+                            Text("Создать",
                             style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
                             ),
                             Spacer(),
@@ -119,9 +120,32 @@ class _DirectoryPageState extends State<DirectoryPage> {
                                 ),
                               color:  Theme.of(context).colorScheme.tertiary
                             ),
-                            child: const Row(children: [Icon(Icons.apartment), 
+                            child: const Row(children: [Icon(Icons.create_new_folder), 
                             SizedBox(width: 10,),
-                          Text("Организация",
+                          Text("Upload file",
+                          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                          ),
+                        
+                          ],),),
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Container(
+                            
+                            padding: const EdgeInsets.all(10),
+                            height: 60,
+                            width: 350,
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                topLeft:Radius.circular(10),
+                                bottomRight:Radius.circular(10),
+                                ),
+                              color:  Theme.of(context).colorScheme.tertiary
+                            ),
+                            child: const Row(children: [Icon(Icons.create_sharp), 
+                            SizedBox(width: 10,),
+                          Text("Создать группу",
                           style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
                           ),
                           Spacer(),
@@ -143,33 +167,9 @@ class _DirectoryPageState extends State<DirectoryPage> {
                                 ),
                               color:  Theme.of(context).colorScheme.tertiary
                             ),
-                            child: const Row(children: [Icon(Icons.people), 
+                            child: const Row(children: [Icon(Icons.find_in_page), 
                             SizedBox(width: 10,),
-                          Text("Контуры ГИСМТ",
-                          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
-                          ),
-                          Spacer(),
-                        Icon(Icons.arrow_forward_ios)
-                          ],),),
-                        ),
-
-                        Padding(
-                          padding: const EdgeInsets.all(15),
-                          child: Container(
-                            
-                            padding: const EdgeInsets.all(10),
-                            height: 60,
-                            width: 350,
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.only(
-                                topLeft:Radius.circular(10),
-                                bottomRight:Radius.circular(10),
-                                ),
-                              color:  Theme.of(context).colorScheme.tertiary
-                            ),
-                            child: const Row(children: [Icon(Icons.attach_money), 
-                            SizedBox(width: 10,),
-                          Text("Контрагенты",
+                          Text("Найти",
                           style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
                           ),
                           Spacer(),
@@ -182,6 +182,5 @@ class _DirectoryPageState extends State<DirectoryPage> {
       ),
                     
     );
-    
   }
 }

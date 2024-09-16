@@ -3,8 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:inha_app/pages/line%20graph/individual_line.dart';
 
 class LineChartWidgets extends StatelessWidget {
+  Color color;
   final List<IndividualLine>lines;
-  const LineChartWidgets({super.key,  required this.lines  });
+   LineChartWidgets({super.key, required  this.color,  required this.lines  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,7 @@ class LineChartWidgets extends StatelessWidget {
           
 
           lineBarsData: [LineChartBarData(
+            color: color,
             barWidth: 7,
         spots: lines.map((line) => FlSpot(line.x, line.y)).toList(),
         isCurved: false,
@@ -57,6 +59,10 @@ Widget getBottomLine2Titles (double value, TitleMeta meta){
     case 5: text = const Text("Sep", style: style,);
     break;
     case 6: text = const Text("Oct", style: style,);
+    break;
+    case 7: text = const Text("Nov", style: style,);
+    break;
+    case 8: text = const Text("Dec", style: style,);
     break;
     default:
     text = const Text('', style: style,);

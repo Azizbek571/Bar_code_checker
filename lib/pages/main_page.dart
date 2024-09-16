@@ -1,27 +1,5 @@
-import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
-import 'package:inha_app/components/home/appbar_clients.dart';
-import 'package:inha_app/components/home/appbar_money.dart';
-import 'package:inha_app/components/home/appbar_sales.dart';
-import 'package:inha_app/components/home/appbar_users.dart';
-import 'package:inha_app/components/home/bell.dart';
-import 'package:inha_app/pages/bar%20graph/bar_graph.dart';
-import 'package:inha_app/pages/drawerpages/aggregation.dart';
-import 'package:inha_app/pages/drawerpages/directory.dart';
-import 'package:inha_app/pages/drawerpages/documents.dart';
-import 'package:inha_app/pages/drawerpages/fitting.dart';
-import 'package:inha_app/pages/drawerpages/order.dart';
-import 'package:inha_app/pages/drawerpages/settings.dart';
-import 'package:inha_app/pages/drawerpages/shipping.dart';
-import 'package:inha_app/pages/drawerpages/writingOff.dart';
-import 'package:inha_app/pages/line%20graph/individual_line.dart';
-import 'package:inha_app/pages/line%20graph/lineChart.dart';
-import 'package:inha_app/pages/login_page.dart';
-import 'package:inha_app/themes/theme_provider.dart';
-import 'package:provider/provider.dart';
+import '../config/imports.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -36,7 +14,7 @@ class _MainPageState extends State<MainPage> {
     2.50,
     42.42,
     10.50,
-    100.20,
+    150.20,
     88.99,
     90.10,
   ];
@@ -75,7 +53,7 @@ class _MainPageState extends State<MainPage> {
               height: 80,
               color: Theme.of(context).colorScheme.primary,
               child: Padding(
-                padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+                padding: const EdgeInsets.only(top: 10, left: 20, right: 10,),
                 child: Column(
                   children: [
                     Row(
@@ -108,7 +86,7 @@ class _MainPageState extends State<MainPage> {
                         const SizedBox(width: 20),
                         Container(
                           width: 200,
-                          height: 40,
+                          height: 52,
                           child: const TextField(
                             decoration: InputDecoration(
                                 focusedBorder: OutlineInputBorder(),
@@ -169,12 +147,12 @@ class _MainPageState extends State<MainPage> {
             
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: Row(
+              child: Column(
                 children: [
               
               
                   Padding(
-                    padding: const EdgeInsets.only(left: 20, top: 15),
+                    padding: const EdgeInsets.only(left: 10, top: 15, right: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -232,8 +210,11 @@ class _MainPageState extends State<MainPage> {
                       ],
                     ),
                   ),
+
+
+
                   Padding(
-                    padding: const EdgeInsets.only(left: 20, top: 15,),
+                    padding: const EdgeInsets.only(left: 10, top: 15,right: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -246,8 +227,10 @@ class _MainPageState extends State<MainPage> {
                             ),
                           ),
                           height: 300,
-                          width: 400,
-                          child: LineChartWidgets(lines: individualLines,),
+                          width: 350,
+                          child: LineChartWidgets(lines: individualLines,
+                          color: Colors.blue,
+                          ),
                         ),
                         Container(
                           padding: const EdgeInsets.all(20),
@@ -255,7 +238,7 @@ class _MainPageState extends State<MainPage> {
                               color: Theme.of(context).colorScheme.background,
                               borderRadius: const BorderRadius.only(
                                   bottomRight: Radius.circular(20))),
-                          width: 400,
+                          width: 350,
                           child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -281,6 +264,71 @@ class _MainPageState extends State<MainPage> {
                                   ),
                                   SizedBox(width: 5),
                                   Text("updated 4 min ago"),
+              
+                                  
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+              
+              
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10,right: 10, top: 15, bottom: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.only(left: 10, top: 30, right: 30,),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.background,
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                            ),
+                          ),
+                          height: 300,
+                          width: 350,
+                          child: LineChartWidgets(
+                            color: Colors.green,
+                            lines: individualLines,
+                           
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.background,
+                              borderRadius: const BorderRadius.only(
+                                  bottomRight: Radius.circular(20))),
+                          width: 350,
+                          child: const Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Completed Tasks",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 18,
+                                    color: Colors.black87),
+                              ),
+                              Text("Last Campaign Performance"),
+                              SizedBox(height: 8),
+                              Divider(
+                                color: Color.fromARGB(255, 195, 189, 189),
+                              ),
+                              SizedBox(height: 8),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.timer,
+                                    size: 15,
+                                    color: Colors.black45,
+                                  ),
+                                  SizedBox(width: 5),
+                                  Text("just updated"),
               
                                   
                                 ],
@@ -327,7 +375,7 @@ class _MainPageState extends State<MainPage> {
 
 
       drawer: Drawer(
-        backgroundColor: Theme.of(context).colorScheme.secondary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         child: ListView(
           children: [
             Container(
